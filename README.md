@@ -253,14 +253,14 @@
 
 * Dosya ve dizinlerde sahiplik görüntüleme:
     * input
-    ```
-    ll
-    ```
+        ```
+        ll
+        ```
 
     * output
-    ```
-    drwxr-xr-x  2 fk   fk    4096 Eyl  8 04:26  Desktop/
-    ```
+        ```
+        drwxr-xr-x  2 fk   fk    4096 Eyl  8 04:26  Desktop/
+        ```
     * Yukarıdaki ilk sütundaki ilk karakter bize "dosya mı ya da dizin mi" bilgisini veriyor, sonraki üç karakter da dizine sahip kullanıcıya verilen izinleri gösteriyor. Ortadaki üç karakter ise dizin grup izinlerini, son üç karakter ise herkese açık izin bilgisini gösteriyor.
 
 * Dosya ve dizinlerin sahibini değiştirme:
@@ -285,14 +285,14 @@
 * Bir dizinin sahipliğini ya da grubunu değiştirdiğimiz zaman dizin içinde sahiplik ve gruplar değişmiyor, bunun için ek bir işlev var:
 
     * Kullanıcı
-    ```
-    sudo chown -R <new_owner_username> <dir_name>
-    ```
+        ```
+        sudo chown -R <new_owner_username> <dir_name>
+        ```
 
     * Grup
-    ```
-    sudo chgrp -R <new_group_name> <dir_name>
-    ```
+        ```
+        sudo chgrp -R <new_group_name> <dir_name>
+        ```
 
 * Bir dizindeki belirli bir sahipliği başkasına aktarmak:
     ```
@@ -309,22 +309,176 @@
 
 Yani 7'nin anlamı tüm izinlere sahiptir anlamına geliyor.
 
-* Örnek: İzin bilgileri bu şekilde verilmişse: `drwxrwxr-x` ilk karakter `d` olduğu için bunun bir dizin olduğunu anlıyoruz. sonraki üçerli karakterler tek tek hesaplandığında `775` gibi bir sonuç çıkıyor, yani bağlı bulunulan kullanıcı ve gruplar tüm izinlere sahip ama geriye kalan kullanıcılar ise sadece çalıştırma yetkisine sahiptir anlamı çıkıyor.
+* Örnek: İzin bilgileri bu şekilde verilmişse: `drwxrwxr-x` ilk karakter `d` olduğu için bunun bir dizin olduğunu anlıyoruz. sonraki üçerli karakterler tek tek hesaplandığında `775` gibi bir sonuç çıkıyor, yani bağlı bulunulan kullanıcı ve gruplar tüm izinlere sahip ama geriye kalan kullanıcılar ise sadece okuma ve çalıştırma yetkisine sahiptir anlamı çıkıyor.
 
 #### Dosya ve Dizinlerin İzinlerini Değiştirmek
 
 * Bir dosya ya da dizinin izinlerini değiştirmek için `chmod` komutunu kullanıyoruz.
 
     * Tüm kullanıcılara okuma, yazma ve çalıştırma izni vermek.
-    ```
-    chmod 777 test.txt
-    ```
+        ```
+        chmod 777 test.txt
+        ```
 
     * Sadece dosya sahibine ve bulunduğu gruplara okuma, yazma ve çalıştırma izni, diğer kullanıcılara sadece okuma izni vermek:
-    ```
-    chmod 774 test.txt
-    ```
+        ```
+        chmod 774 test.txt
+        ```
 
 ## linux-course 301
+
+* Linux'ta çalışan her program bir süreçtir
+
+![Linux Süreçleri](<Screenshot from 2023-09-15 16-54-36.png>)
+
+#### Çalışan Süreçlerle İlgili İşlemler
+
+1. Çalışan süreçleri listelemek:
+    ```
+    ps -ef
+    ```
+
+2. Çalışan süreçleri program adına göre arama yaparak listelemek:
+    ```
+    ps -ef | grep <process_name>
+    ```
+
+3. Tek bir kullanıcıya ait çalışan süreçleri listelemek:
+    ```
+    ps -au<user>
+    ```
+
+4. Çalışan süreçleri ayrıntılı olarak canlı izlemek:
+
+    * İlk olarak htop'u yüklememiz gerekir:
+        ```
+        sudo apt install htop
+        ```
+
+    * Ardından aşağıdaki komutu yazarak htop'u çalıştırabiliriz:
+        ```
+        htop
+        ```
+
+5. Süreçleri sonlandırmak:
+
+    * kill komutuyla:
+        ```
+        kill <PID>
+        ```
+    * SIGKILL(9) komutuyla(programı aniden sonlandırır, istenmeyen veri kaybı olabilir):
+        ```
+        kill -9 <PID>
+        ```
+    * SIGTERM(15) komutuyla(arkaplanda çalışan işlem varsa, onu toparlayıp öyle kapatır):
+        ```
+        kill -15 <PID>
+        ```
+    * Bir programa ait tüm süreçleri sonlandırmak:
+        ```
+        pkill <program_name>
+        ```
+#### Servis Yönetimi
+
+6. Servisleri görüntülemek:
+
+    * Sistem üzerindeki servis ünitelerini görüntülemek:
+        ```
+        systemctl list-units --type service
+        ```
+    * Servislerin durumunu görüntülemek:
+        ```
+        systemct status <service_name>
+        ```
+    * Çalışan bir servisi durdurmak:
+        ```
+        sudo systemcl stop <service_name>
+        ```
+    * Durdurulmuş bir servisi başlatmak:
+        ```
+        sudo systemcl start <service_name>
+        ```
+    * Çalışan bir servisi yeniden başlatmak:
+        ```
+        sudo systemcl restart <service_name>
+        ```
+
+#### Ağ Bağlantılarıyla İlgili İşlemnler
+
+7. Ağ işlemleri:
+
+    * Bağlantı bilgilerini öğrenmek:
+        ```
+        ip addr show
+        ```
+    * IP Adresini öğrenmek:
+        ```
+        hostname -I
+        ```
+    * Bağlantı testi için ping atmak:
+        ```
+        ping github.com
+        ```
+    * Ping sayısını belirtmek:
+        ```
+        ping -c 5 github.com
+        ```
+
+8. Ağ trafiğini izlemek:
+    ```
+    sudo tcpdump -v 
+    ```
+
+    * Ağ trafiğini özet bir şekilde izlemek:
+        ```
+        sudo iftop
+        ```
+    * Ağ bağlantısı üzerinde oluşan trafiğin, paketler bazında Wireshark kullanılarak izlenmesi:
+        ```
+        sudo wireshark
+        ```
+9. Dosya indirmek:
+    
+    * Web sayfalarının `index.html`'ini indirmek:
+        ```
+        wget https://github.com/
+        ```
+    * Url üzerinden dosya indirmek:
+        ```
+        wget https://avatars.githubusercontent.com/u/79539547
+        ```
+
+10. SSH kullanılarak uzaktan terminal erişimi:
+
+    ```
+    ssh <user>@<ip_address>
+    ```
+
+11. SSH sunucusunu kapatmak:
+
+    * Kapatmak:
+        ```
+        sudo systemctl stop ssh
+        ```
+    * Otomatik açılmasını önlemek:
+        ```
+        sudo systemctl disable ssh
+        ```
+
+12. DNS sorguları yapmak:
+
+    * Web adresinin dns adresini öğrenmek:
+        ```
+        nslookup github.com
+        ```
+    * Web adresinin mail sunucularını öğrenmek:
+        ```
+        nslookup -query=mx github.com
+        ```
+
+    * Web adresinin isim sunucularını öğrenmek:
+        ```
+        nslookup -query=ns github.com
+        ```
 
 ## linux-course 401
