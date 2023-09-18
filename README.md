@@ -2,43 +2,39 @@
 
 ## linux-course 101
 
-1. Mevcut oturum açan kullanıyı görüntülemek:
+* Mevcut oturum açan kullanıyı görüntülemek:
     ```
     whoami
     ```
-2. Sistem özelliklerini görüntülemek:
+* Sistem özelliklerini görüntülemek:
     ```
     uname -a
     ```
-3. Bir web sayfasına ping atmak:
+* Bir web sayfasına ping atmak:
     ```
     ping -c4 ubuntu.com
     ```
-4. Şu anki tarih ve zamanı görüntülemek:
+* Şu anki tarih ve zamanı görüntülemek:
     ```
     date
     ```
-5. Bulunulan dizindeki dosya ve dizinleri görüntülemek(gizli olanlar da olsun diye -a konur):
+* Bulunulan dizindeki dosya ve dizinleri görüntülemek(gizli olanlar da olsun diye -a konur):
     ```
     ls -a
     ```
-6. Bulunulan dizinin adresini almak:
+* Bulunulan dizinin adresini almak:
     ```
     pwd
     ```
-7. Bir dizinin içine girmek:
+* Bir dizinin içine girmek:
     ```
     cd Desktop
     ```
-8. Bir dizinin içine girmek:
-    ```
-    cd Desktop
-    ```
-9. Kullanıcı kılavuzunu görüntülemek:
+* Kullanıcı kılavuzunu görüntülemek:
     ```
     man ls
     ```
-10. Komut geçmişini görüntülemek:
+*  Komut geçmişini görüntülemek:
     ```
     history
     ```
@@ -157,34 +153,34 @@
 
 ## linux-course 201
 
-1. Herhangi bir dosya uzantısına sahip dosyaları listelemek:
+* Herhangi bir dosya uzantısına sahip dosyaları listelemek:
     ```
     ls *.html
     ```
-2. İçinde herhangi bir kelime geçen dosyaları listelemek:
+* İçinde herhangi bir kelime geçen dosyaları listelemek:
     ```
     ls *test*
     ```
-3. Herhangi tek bir harfi gözardı edip(?) geriye kalan karakterlerle uyuşan dosyaları listelemek:
+* Herhangi tek bir harfi gözardı edip(?) geriye kalan karakterlerle uyuşan dosyaları listelemek:
     ```
     ls qwerty?asdfg
     ```
-4. Herhangi bir karaktere gelebilecek değerleri belirtmek:
+* Herhangi bir karaktere gelebilecek değerleri belirtmek:
     ```
     ls asdf[tyug]*.txt
     ```
 
-5. Bir komutun çıktısını bir dosyaya yazdırmak:
+* Bir komutun çıktısını bir dosyaya yazdırmak:
     ```
     pip3 freeze > requirements.txt
     ```
 
-6. Bir komutun çıktısını bir dosyanın sonuna yazdırmak:
+* Bir komutun çıktısını bir dosyanın sonuna yazdırmak:
     ```
     cat test1.txt >> test2.txt
     ```
 
-7. Pipe kullanımı:
+* Pipe kullanımı:
     * pipe'tan önceki çıktı üzerinden kelime araması yapıyor ve bulduğu satırları çıktı olarak veriyor.
     ```
     ls -l | grep search_word
@@ -193,7 +189,7 @@
     ```
     cat test.txt | sort | head -n10
     ```
-8. Alias komutu:
+* Alias komutu:
     * Çok sık kullandığımız uzun komutlar varsa bunları her seferinde yazmak yerine o uzun komuta bir takma ad verebiliriz.
     ```
     alias pipinstall='pip3 install -r requirements.txt'
@@ -202,27 +198,27 @@
 
 #### Kullanıcı ve Grup Kavramları
 
-1. Kullanıcı listesi görüntüleme:
+* Kullanıcı listesi görüntüleme:
     ```
     cat /etc/passwd
     ```
-2. Kullanıcı parolalarını görüntülemek(hash kodu):
+* Kullanıcı parolalarını görüntülemek(hash kodu):
     ```
     sudo cat /etc/shadow
     ```
-3. Kullanıcı eklemek:
+* Kullanıcı eklemek:
     ```
     sudo useradd <username>
     ```
-3. Kullanıcı parolası değiştirmek:
+* Kullanıcı parolası değiştirmek:
     ```
     sudo passwd <username>
     ```
-4. Ayrıntılı bilgilerle kullanıcı eklemek:
+* Ayrıntılı bilgilerle kullanıcı eklemek:
     ```
     sudo adduser <username>
     ```
-5. Kullanıcı silmek:
+* Kullanıcı silmek:
     * Bilgilendirme mesajı verir:
     ```
     sudo deluser <username>
@@ -231,19 +227,19 @@
     ```
     sudo userdel <username>
     ```
-6. Grupları listelemek:
+* Grupları listelemek:
     ```
     cat /etc/group
     ```
-7. Grup eklemek:
+* Grup eklemek:
     ```
     sudo addgroup <group_name>
     ```
-8. Grup silmek:
+* Grup silmek:
     ```
     sudo delgroup <group_name>
     ```
-9. Kullanıcları herhangi bir gruba dahil etmek:
+* Kullanıcları herhangi bir gruba dahil etmek:
     ```
     sudo usermod -a -G <group_name> <username>
     ```
@@ -333,22 +329,22 @@ Yani 7'nin anlamı tüm izinlere sahiptir anlamına geliyor.
 
 #### Çalışan Süreçlerle İlgili İşlemler
 
-1. Çalışan süreçleri listelemek:
+* Çalışan süreçleri listelemek:
     ```
     ps -ef
     ```
 
-2. Çalışan süreçleri program adına göre arama yaparak listelemek:
+* Çalışan süreçleri program adına göre arama yaparak listelemek:
     ```
     ps -ef | grep <process_name>
     ```
 
-3. Tek bir kullanıcıya ait çalışan süreçleri listelemek:
+* Tek bir kullanıcıya ait çalışan süreçleri listelemek:
     ```
     ps -au<user>
     ```
 
-4. Çalışan süreçleri ayrıntılı olarak canlı izlemek:
+* Çalışan süreçleri ayrıntılı olarak canlı izlemek:
 
     * İlk olarak htop'u yüklememiz gerekir:
         ```
@@ -360,7 +356,7 @@ Yani 7'nin anlamı tüm izinlere sahiptir anlamına geliyor.
         htop
         ```
 
-5. Süreçleri sonlandırmak:
+* Süreçleri sonlandırmak:
 
     * kill komutuyla:
         ```
@@ -380,7 +376,7 @@ Yani 7'nin anlamı tüm izinlere sahiptir anlamına geliyor.
         ```
 #### Servis Yönetimi
 
-6. Servisleri görüntülemek:
+* Servisleri görüntülemek:
 
     * Sistem üzerindeki servis ünitelerini görüntülemek:
         ```
@@ -405,7 +401,7 @@ Yani 7'nin anlamı tüm izinlere sahiptir anlamına geliyor.
 
 #### Ağ Bağlantılarıyla İlgili İşlemnler
 
-7. Ağ işlemleri:
+* Ağ işlemleri:
 
     * Bağlantı bilgilerini öğrenmek:
         ```
@@ -424,7 +420,7 @@ Yani 7'nin anlamı tüm izinlere sahiptir anlamına geliyor.
         ping -c 5 github.com
         ```
 
-8. Ağ trafiğini izlemek:
+* Ağ trafiğini izlemek:
     ```
     sudo tcpdump -v 
     ```
@@ -437,7 +433,7 @@ Yani 7'nin anlamı tüm izinlere sahiptir anlamına geliyor.
         ```
         sudo wireshark
         ```
-9. Dosya indirmek:
+* Dosya indirmek:
     
     * Web sayfalarının `index.html`'ini indirmek:
         ```
@@ -448,13 +444,13 @@ Yani 7'nin anlamı tüm izinlere sahiptir anlamına geliyor.
         wget https://avatars.githubusercontent.com/u/79539547
         ```
 
-10. SSH kullanılarak uzaktan terminal erişimi:
+* SSH kullanılarak uzaktan terminal erişimi:
 
     ```
     ssh <user>@<ip_address>
     ```
 
-11. SSH sunucusunu kapatmak:
+* SSH sunucusunu kapatmak:
 
     * Kapatmak:
         ```
@@ -465,7 +461,7 @@ Yani 7'nin anlamı tüm izinlere sahiptir anlamına geliyor.
         sudo systemctl disable ssh
         ```
 
-12. DNS sorguları yapmak:
+* DNS sorguları yapmak:
 
     * Web adresinin dns adresini öğrenmek:
         ```
@@ -482,3 +478,71 @@ Yani 7'nin anlamı tüm izinlere sahiptir anlamına geliyor.
         ```
 
 ## linux-course 401
+
+#### Paket Yönetimi
+
+* Paket listesini güncellemek:
+    ```
+    sudo apt update
+    ```
+* Paket yüklemek ya da güncellemek:
+    ```
+    sudo apt install <package_name>
+    ```
+* Paket kaldırma:
+    ```
+    sudo apt remove <package_name>
+    ```
+* Kurulu paketleri güncellemek:
+    ```
+    sudo apt upgrade
+    ```
+* Paket listesini görüntülemek:
+    ```
+    cat /etc/apt/sources.list
+    ```
+* Paket aramak:
+    ```
+    apt search <search_key>
+    ```
+* Kurulu olan ve güncellenebilir paketleri listelemek:
+    ```
+    apt list --upgradable
+    ```
+* Kurulu olan paketleri dosyalarıyla beraber silmek:
+    ```
+    sudo apt purge <package_name>
+    ```
+* Doğrudan paket dosyasından kurulum yapmak(`dpkg`):
+    ```
+    sudo dpkg -i <package_name>.deb
+    ```
+* Paket kaldırma işlemini `dpkg` ile yapmak:
+    ```
+    sudo dpkg -r <package_name>
+    ```
+
+#### Shell Programlama
+
+* İlk olarak `.sh` uzantılı dosyamızı oluşturuyoruz:
+    ```
+    nano test.sh
+    ```
+* Ardından örnek olarak aşağıdaki basit kod 
+  parçasını bu dosyaya ekleyebiliriz:
+    ```
+    echo "isminizi yazın:"
+    read name
+    echo "merhaba $name"
+    ```
+* Dosyamızın çalıştırılabilirliği için izin veriyoruz:
+    ```
+    chmod +x test.sh
+    ```
+* Aşağıdaki komutu girerek dosyamızı çalıştırabiliriz:
+    ```
+    bash test.sh
+    ```
+
+
+
